@@ -27,10 +27,10 @@ with mp_hand.Hands(min_detection_confidence = 0.5, min_tracking_confidence = 0.5
                 akimbe_y = hand_landmarks.landmark[4].y
                 tondro_x = hand_landmarks.landmark[8].x
                 tondro_y = hand_landmarks.landmark[8].y
-                decalage = 0.1
-                # if akimbe_x <= tondro_x + decalage and tondro_x <= akimbe_x + decalage and akimbe_y <= tondro_y + decalage and tondro_y <= akimbe_y - decalage :
-                print('tondro_x=',tondro_x, 'akimbe_x=',akimbe_x)
-                if akimbe_x <= tondro_x + decalage and tondro_x <= akimbe_x + decalage :
+                # difference entre deux point; akimbe(x,y) et tondro(x,y)
+                decalage = ( ((tondro_x - akimbe_x)**2) + ((tondro_y - akimbe_y)**2) )**(1/2)
+                print(decalage)
+                if decalage <= 0.1 :
                     toucher_space()
 
         cv2.imshow('Frame', image)
